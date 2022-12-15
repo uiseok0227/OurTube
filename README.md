@@ -20,10 +20,19 @@ OurTube
   
   ###  2-2) 사용 기술 스택 
   
-  Backend - Python, Django
-  파이썬의 웹 프레임워크인 Django를 이용했습니다. 데이터 분석을 하며 파이썬을 주로 접했고 
-  이번 프로젝트에서는 분석 뿐만 아니라 서비스화 까지 생각해보았습니다. 이러한 이유로 파이썬의
-  Django 를 사용했습니다.
+  - Backend - Python, Django
+  
+    파이썬의 웹 프레임워크인 Django를 이용했습니다. 데이터 분석을 하며 파이썬을 주로 접했고 
+    이번 프로젝트에서는 분석 뿐만 아니라 서비스화 까지 생각해보았습니다. 이러한 이유로 파이썬의
+    Django 를 사용했습니다.
+    
+  - Frontend - HTML,CSS,Javascript
+  
+    CSS와 Bootstrap을 이용했고 기본적인 JS함수를 이용했습니다.
+    
+  - DB
+  
+    DB의 경우 MySQL을 사용했습니다.
   
   ### 2-3) 제공 서비스
   
