@@ -1,7 +1,8 @@
 # OurTube
 
 ## 1. 프로젝트명 
-OurTube
+### OurTube 
+![image](https://user-images.githubusercontent.com/91052922/207825777-d7c52c23-b3c3-443c-835f-49da40c66e72.png)
 
 ## 2. 프로젝트 설명 
 
@@ -38,10 +39,14 @@ OurTube
   
   - 구글 로그인
   
+    ![image](https://user-images.githubusercontent.com/91052922/207825967-25609b77-8cf3-4e2f-9317-dfe7e0bd0701.png)
+  
     구글 로그인을 제공하여 사용자의 접근성을 높였고 Google Api를 통해 사용자의 정보를,
     YouTube Api를 통해 사용자의 구독 목록과 채널 별 카테고리를 얻을 수 있었습니다.
     
   - 대시보드
+  
+    ![image](https://user-images.githubusercontent.com/91052922/207826044-0378e424-3f8a-42f2-b513-369b2bfd79ca.png)
 
     사용자의 카테고리 별 구독 개수를 가져와서 Chart.JS를 통해 파이차트를 보여줍니다. 
     그리고 카테고리별 세부 채널 정보를 볼 수 있고 링크를 통해 직접 유튜브 채널로 이동 가능합니다.
@@ -49,6 +54,36 @@ OurTube
     
   - 소셜 서비스
     
+    ![image](https://user-images.githubusercontent.com/91052922/207826078-2922a4a0-8716-45bd-babc-27460dcbcaf9.png)
+
     친구 검색, 친구 추가가 가능하며 친구를 추가할 경우 친구목록에서 친구의 세부정보를 살펴볼 수 있습니다.
     세부정보에는 친구의 선호 카테고리 3가지가 무엇인지, 친구와 나의 유사도, 친구의 구독 정보를 볼 수 있습니다.
-    이때 유사도의 경우 
+    이때 유사도의 경우, 나의 전체 구독 수에 대한 카테고리 별 구독 채널 비율과 친구의 비율을 비교해서 아래의 유사도 기법을 사용했습니다.
+    <img width="406" alt="image" src="https://user-images.githubusercontent.com/91052922/207823753-710ca822-d5c2-4ba3-a471-e5edd0992faf.png">
+    의 유사도를 사용했습니다.
+    본 유사도는 x, y두 rating 벡터가 있을 때, 두 벡터의 co-rated 평점이 많을 수록, 두 벡터의 각 값에 대한 오차가 적을수록 newmetric(x,y)의 유사도는 높은 점수를 얻게 됩니다.
+    크기와 방향 모두 고려해야했기에 적합한 유사도 측정이라고 판단하였습니다.
+    
+  - 추천 시스템
+
+    <img width="329" alt="image" src="https://user-images.githubusercontent.com/91052922/207826198-fbafde52-3656-4448-b504-2c61b0fe2bc4.png">
+
+    
+    추천 시스템의 경우, 전체 사용자의 구독 채널 중 내가 구독하지 않은 채널을 바탕으로 추천 목록을 만들어 진행했습니다.
+    
+    먼저 전체 사용자들 별 구독 정보를 가져옵니다. 이때 사용자와 나의 유사도를 해당 채널의 score로 부여했습니다. 그 후 score가 0-1의 값을 가질 수 있도록,
+    scaling을 했습니다. 이때 사용자들이 많이 구독하는 채널은 자연스럽게 추천 목록에 중복으로 들어가면서 마치 로또에 뽑기공을 많이 넣듯이 구현했습니다.
+    
+    다음으로는 내가 선호하는 카테고리에 대하여 더 높은 score을 얻을 수 있도록 만들었습니다. 카테고리 비율을 자연스럽게 score에 넣어서 높은 score일 수록 
+    내가 좋아하는 카테고리의 채널이 추천됩니다.
+    
+    위의 과정을 거쳐서 만들어진 추천 목록에 대하여 min-max scaling을 했습니다. 추천 목록의 score의 대부분이 0.7-1 사이에 있었기에 min - max로 조금 분산시켜줬습니다.
+    <img width="209" alt="minmax" src="https://user-images.githubusercontent.com/91052922/207825315-fdcd0edf-6e2f-4164-9d88-8528d02281bf.png">
+    
+    추천 목록의 상위 5% 중 random, 10% 중 random 그리고 너무 선호 카테고리로만 편향되는 가능성을 줄이기 위하여 random sampling 하나를 넣었습니다.
+    따라서 총 3가지 채널이 추천되며 refresh 버튼을 통해 새로운 추천을 받을 수 있습니다.
+   
+## 3. 사용방법 
+  
+  현재는 배포가 되지 않았습니다. local의 DB를 통해 연동을 한다면 누구든 사용이 가능합니다.
+    
