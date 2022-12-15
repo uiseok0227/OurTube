@@ -54,7 +54,7 @@
     
   - 소셜 서비스
     
-    ![image](https://user-images.githubusercontent.com/91052922/207826078-2922a4a0-8716-45bd-babc-27460dcbcaf9.png)
+    ![image](https://user-images.githubusercontent.com/91052922/207826679-87bb7b39-ff7f-4431-ac69-9b62f31db6e6.png)
 
     친구 검색, 친구 추가가 가능하며 친구를 추가할 경우 친구목록에서 친구의 세부정보를 살펴볼 수 있습니다.
     세부정보에는 친구의 선호 카테고리 3가지가 무엇인지, 친구와 나의 유사도, 친구의 구독 정보를 볼 수 있습니다.
@@ -78,6 +78,7 @@
     내가 좋아하는 카테고리의 채널이 추천됩니다.
     
     위의 과정을 거쳐서 만들어진 추천 목록에 대하여 min-max scaling을 했습니다. 추천 목록의 score의 대부분이 0.7-1 사이에 있었기에 min - max로 조금 분산시켜줬습니다.
+    
     <img width="209" alt="minmax" src="https://user-images.githubusercontent.com/91052922/207825315-fdcd0edf-6e2f-4164-9d88-8528d02281bf.png">
     
     추천 목록의 상위 5% 중 random, 10% 중 random 그리고 너무 선호 카테고리로만 편향되는 가능성을 줄이기 위하여 random sampling 하나를 넣었습니다.
