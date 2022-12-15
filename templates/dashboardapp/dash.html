@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src = 'http://code.jquery.com/jquery-latest.min.js'></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DashBoard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/53a8c415f1.js" crossorigin="anonymous"></script>
+    {% load static %}
+<link
+rel = "stylesheet"
+type = "text/css"
+href = "{% static 'css/dash.css'%}"
+/>
+  {% load static %}
+  <link
+rel = "stylesheet"
+type = "text/css"
+href = "{% static 'css/sign-in.css'%}"
+/>
+</head>
+<body>
+    <div class="wrap">
+        <div class="login">
+            {% if user_status %}
+                <ul>
+                {% for user in user_status %}
+                <a href="/main/dashboard/{{ user.1 }}/">{{user.0}}</a> : {{user.2}}
+                <br>
+                {% endfor %}
+                </ul>
+            {% endif %}
+
+            <div class="submit">
+                <input type="submit" value="Back to Home" onclick="location.href ='/main'">
+            </div>
+
+            <p class="mt-5 mb-3 text-muted">&copy; 2022</p>
+        </div>
+    </div>
+</body>
+</html>

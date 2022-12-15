@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+        </style>
+    <title>DashBoard</title>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <link rel = "stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"> 
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/53a8c415f1.js" crossorigin="anonymous"></script>
+    {% load static %}
+        <link
+        rel = "stylesheet"
+        type = "text/css"
+        href = "{% static 'css/dash.css'%}"
+        />
+        {% load static %}
+        <link
+        rel = "stylesheet"
+        type = "text/css"
+        href = "{% static 'css/sign-in.css'%}?after"
+        />
+        <style>
+            .body {
+                font-family: 'Jua', sans-serif;
+            }
+        </style>
+        <style type="text/css">
+            #wrap-loading { /*화면 전체를 어둡게 합니다.*/
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            /*display: none;*/
+            /*background: rgba(0,0,0,0.2);*/ /*not in ie */
+            /*filter: progid:DXImageTransform.Microsoft.Gradient(startColorstr='#20000000', endColorstr='#20000000');*/ /* ie */
+            }
+            
+            .loading { /*로딩 이미지*/
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            margin-left: -21px;
+            margin-top: -21px;
+            }
+            </style>
+        <script></script>
+
+    </head> 
+    <body>
+        <div class = "wrap">
+            <div class = "sidebar">
+                <div class ="logo">
+                    <img src="{% static 'images/logo1.png'%}"style="width:80x; height:80px;"></img>
+                    <h4>OurTube</h4>
+                </div>
+                <ul>
+                    <li class="active">
+                        <a href="/main/dashboard">
+                            <span class="icon"><i class="fas fa-home"></i></span>
+                            <span class="item">Home</span>
+                        </a>
+                    </li>
+                    <!-- <li>
+                        <a href="/main/dashboard">
+                            <span class="icon"><i class="fas fa-desktop"></i></span>
+                            <span class="item">My Dashboard</span>
+                        </a>
+                    </li> -->
+                    <li>
+                        <a href="/main/friend">
+                            <span class="icon"><i class="fas fa-user-friends"></i></span>
+                            <span class="item">People</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/main/recommend">
+                            <span class="icon"><i class="fas fa-tachometer-alt"></i></span>
+                            <span class="item">Recommend</span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+            <div class="main">
+                <div class = "row">
+                    <div class = "col-md-10">
+                        {% if username %}
+                        <h1>Welcome, {{username}}</h1>
+                        <h3>This is OurTube</h3>
+                        <br>
+                        {% endif %}
+                    </div>
+                    <div class = "col-md-2">
+                        <form method="GET" action="{% url 'logout' %}">
+                        <button class="btn btn-secondary" type="submit" value = "{{friend_name}}">
+                            LogOut
+                        </button>
+                        </form>
+                    </div>
+                </div>
+                <div class = "row">
+                        <div class = "col-md-6">
+                            <div class = "container">
+                                <div class = "box2">
+                            <canvas id="myChartOne"></canvas>
+                                </div>
+                            </div>  
+                        </div>
+                        <div class = "col-md-1"></div>
+                        <div class = "col-5">
+                            <!-- <div class = "container"> -->
+                                <div class = "box">
+                            <h2>Your Category</h2>
+                            <ol start = "1">
+                            {% if user_status %}
+                                {% for user in user_status %}
+                                <li>
+                                <a href="/main/dashboard/{{ user.1 }}/">{{user.0}} ({{user.2}})</a>
+                                </li>
+                                
+                                {% endfor %}
+                            {% endif %}
+                            </ol>
+                            <!-- </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            x = {{xdata|safe}}
+            y = {{ydata|safe}}
+            let myChartOne = document.getElementById('myChartOne').getContext('2d');
+            let barChart = new Chart(myChartOne,{
+                type : 'pie',
+                data : {
+                    labels : 
+                    // ['Entertainment', 'People & Blogs', 
+                    // 'Sports', 'Gaming', 'Howto & Style', 'Education', 'Music', 'Comedy', 'Travel & Events', 'Film & Animation', 'Science & Technology', 'Pets & Animals', 'News & Politics'],
+                            x,
+                    datasets : [{
+                        label: '채널 수',
+                        data:
+                        // [36, 20, 17, 16, 15, 12, 9, 5, 5, 5, 3, 1, 1],
+                        y,
+                        backgroundColor:[
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 135, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(151, 102, 132, 1)',
+                'rgba(123, 99, 162, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(255, 199, 125, 1)',
+                'rgba(54, 162, 135, 1)',
+                'rgba(25, 206, 86, 1)',
+                'rgba(211, 192, 192, 1)',
+                'rgba(234, 102, 132, 1)',
+                'rgba(153, 99, 132, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(65, 65, 44, 1)',
+                'green',
+                'yellow',
+                ],
+
+                borderColor: [
+                'rgba(54, 162, 135, 1)',
+                'rgba(25, 206, 86, 1)',
+                'rgba(211, 192, 192, 1)',
+                'rgba(234, 102, 132, 1)',
+                'rgba(153, 99, 132, 1)',
+                'rgba(255, 159, 64, 1)',
+
+                ],
+
+                borderWidth: 1
+                    }],
+                }
+            })
+        </script>
+
+    </body>
+</html>

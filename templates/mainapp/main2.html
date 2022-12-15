@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/53a8c415f1.js" crossorigin="anonymous"></script>
+    {% load static %}
+<link
+rel = "stylesheet"
+type = "text/css"
+href = "{% static 'css/main.css'%}"
+/>
+  {% load static %}
+  <link
+rel = "stylesheet"
+type = "text/css"
+href = "{% static 'css/sign-in.css'%}"
+/>
+</head>
+<body>
+    <div class="wrap">
+        <div class="login">
+            <h2>Welcome,</h2>
+            <h1>This is Our Tube</h1>
+            <h2></h2>
+            <div class="login_sns">
+            <li><a href="/main/myprofile"><i class="fas fa-address-card"></i></a></li>
+            </div>
+            
+            <div class="submit">
+                <input type="submit" value="Dash Board" onclick="location.href ='/main/dashboard'">
+            </div>
+            <div class="submit">
+                <input type="submit" value="Find Your Friend" onclick = "location.href='/main/friend'">
+            </div>
+            <div class="submit">
+                <input type="submit" value="How about Recommend?">
+            </div>
+            <br>
+            <p class="mt-5 mb-3 text-muted">&copy; 2022</p>
+        </div>
+    </div>
+</body>
+</html>

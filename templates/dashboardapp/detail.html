@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        .container {
+          width: 250px;
+          height: 250px;
+          overflow: auto;
+        }
+        .container::-webkit-scrollbar {
+    width: 10px;
+  }
+  .container::-webkit-scrollbar-thumb {
+    background-color: #2f3542;
+    border-radius: 10px;
+  }
+  .container::-webkit-scrollbar-track {
+    background-color: grey;
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 5px white;
+  }
+      </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CategoryPage</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/53a8c415f1.js" crossorigin="anonymous"></script>
+    {% load static %}
+<link
+rel = "stylesheet"
+type = "text/css"
+href = "{% static 'css/detail.css'%}"
+/>
+  {% load static %}
+  <link
+rel = "stylesheet"
+type = "text/css"
+href = "{% static 'css/sign-in.css'%}"
+/>
+</head>
+<body>
+    <div class="wrap">
+        <div class="login">
+            {% if cate %}
+                {% for c in cate %}
+                <h2> {{c.category}}</h2>
+                {% endfor %}
+            {% endif %}
+            <div class="container">
+            {% if channel_list %}
+                <ul>
+                {% for channel in channel_list %}
+                <img src="{{channel.4}}" height="30" width="30" alt="thumbnail">
+                <a href = https://www.youtube.com/channel/{{channel.3}} target="_blank"> {{channel.2}}</a>
+                <br>
+                {% endfor %}
+                </ul>
+            {% endif %}
+            </div>
+            <div class="submit">
+                <input type="submit" value="Back to Home" onclick="location.href ='/main/dashboard'">
+            </div>
+            <p class="mt-5 mb-3 text-muted">&copy; 2022</p>
+        </div>
+    </div>
+</body>
+</html>

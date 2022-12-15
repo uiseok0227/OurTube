@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/53a8c415f1.js" crossorigin="anonymous"></script>
+    {% load static %}
+<link
+rel = "stylesheet"
+type = "text/css"
+href = "{% static 'css/prof.css'%}"
+/>
+  {% load static %}
+  <link
+rel = "stylesheet"
+type = "text/css"
+href = "{% static 'css/sign-in.css'%}"
+/>
+</head>
+<body>
+    <div class="wrap">
+        <div class="login">
+            <h2>Profile</h2>
+            <div class="login_sns">
+                {% if user_list %}
+                    {% for user in user_list %}
+                        <h3>{{ user.userName }}</h3>
+                    {% endfor %}
+                {% else %}
+                    <p>사용자가 없습니다.</p>
+                {% endif %}
+            </div>
+            {% if interest_list %}
+            <!-- {{interest_list}} -->
+            {% for interest in interest_list %}
+                #{{interest.0}}&nbsp;
+                
+            {% endfor %}
+            {% endif %}
+            
+            <div class="submit">
+                <input type="submit" value="Back to Home" onclick="location.href ='/main'">
+            </div>
+            <p class="mt-5 mb-3 text-muted">&copy; 2022</p>
+        </div>
+    </div>
+</body>
+</html>
