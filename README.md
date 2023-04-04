@@ -30,6 +30,7 @@
   - Frontend - HTML,CSS,Javascript
   
     CSS와 Bootstrap을 이용했고 기본적인 JS함수를 이용했습니다.
+    
     BootStrap을 처음에 다운 받아서 사용하다보니 파일에서 CSS파일 비중이 높아졌습니다. 
     
   - DB
